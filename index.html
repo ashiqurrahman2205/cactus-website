@@ -7,86 +7,102 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="./style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/remixicon/4.2.0/remixicon.css" integrity="sha512-OQDNdI5rpnZ0BRhhJc+btbbtnxaj+LdQFeh0V9/igiEPDiWE2fG+ZsXl0JEH+bjXKPJ3zcXqNyP4/F/NegVdZg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-auth.js"></script>
+<script defer src="https://www.gstatic.com/firebasejs/8.10.1/firebase-firestore.js"></script>
 </head>
 <body class="bg-[#131416]">
-   <!-- <header class="header">
-        <div class="2xl:container bg-transparent">
-            <div class="w-[90%] mx-auto h-[3.5rem] grid grid-cols-1 md:grid-cols-3  items-center text-[#f9fafa] ">
-                <div class="navicon flex justify-start items-center text-[1.25rem] font-semibold">
-                    <img src="./assets/favicon.png" alt="nav-icon">
-                    <p>Cactus</p>
-                </div>
-                <nav class="navbar mr-96">
-                    <div class="navdiv">
-                        <ul class="flex justify-between items-center gap-12 ">
-                            <li>
-                                <a href="#home">Home</a>
-                            </li>
-                            <li>
-                                <a href="#news">News</a>
-                            </li>
-                            <li>
-                                <a href="#shop">Shop</a>
-                            </li>
-                            <li>
-                                <a href="#care">Care</a>
-                            </li>
-                            <li>
-                                <a href="#contact">Contact</a>
-                            </li>
-                        </ul>
-                    </div>
-                </nav>
+  
+    <header class="w-[100vw] fixed top-0 z-50  h-[60px] md:h-[75px]" id="header" >
+        <div class="2xl:container">
+            <div class="w-[90%] mx-auto h-[60px] grid grid-cols-1 lg:grid-cols-2">
+                <div class="flex items-center justify-between ">
+                   <div class="flex items-center justify-between">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24" width="24" height="24" fill="rgba(47,223,112,1)"><path d="M11.998 2C14.2072 2 15.998 3.79086 15.998 6V15H16.998C17.548 15 17.998 14.55 17.998 14V8C17.998 7.44772 18.4458 7 18.998 7C19.5503 7 19.998 7.44772 19.998 8V14C19.998 15.66 18.658 17 16.998 17H15.998V20H17.998V22H5.99805V20H7.99805V14H6.99805C5.34119 14 3.99805 12.6569 3.99805 11V9C3.99805 8.44772 4.44576 8 4.99805 8C5.55033 8 5.99805 8.44772 5.99805 9V11C5.99805 11.55 6.44805 12 6.99805 12H7.99805V6C7.99805 3.79086 9.78891 2 11.998 2ZM11.998 4C10.8935 4 9.99805 4.89543 9.99805 6V20H13.998V6C13.998 4.89543 13.1026 4 11.998 4Z"></path></svg>
+                    <p class="text-xl font-semibold text-white">Cactus</p>
+                   </div>
 
-                <nav class="navbar2 md:hidden">
-                    <div class="navdiv">
-                        <ul class="flex justify-between items-center gap-12">
-                            <li>
-                                <a href="#home">Home</a>
-                            </li>
-                            <li>
-                                <a href="#news">News</a>
-                            </li>
-                            <li>
-                                <a href="#shop">Shop</a>
-                            </li>
-                            <li>
-                                <a href="#care">Care</a>
-                            </li>
-                            <li>
-                                <a href="#contact">Contact</a>
-                            </li>
-                        </ul>
+                    <div class="lg:hidden">
+                        <div class="text-white">
+                            <i class="ri-shopping-cart-line"></i>
+                            <i class="ri-user-line"></i>
+                            <i class="ri-menu-line" id="ham"></i>
+                            <i class="ri-close-large-line hidden" id="cross"></i>
+                        </div>
                     </div>
-                </nav>
-                <div class="navactions">
-                    <div class="navclose md:hidden">
-                        <i class="ri-close-line"></i>
-                    </div>
-                    <div class="icon flex justify-be">
-                        <i class="ri-shopping-cart-line"></i>
-                        <i class="ri-user-line"></i>
-                    </div>
-                    <div class="navtoggle md:hidden">
-                        <i class="ri-menu-line"></i>
-                    </div>
-    
                 </div>
+
+
+
+
+               
+
+
+                 <div class="lg:block hidden py-7">
+                    <nav class=" flex justify-end items-center lg:items-center lg:justify-between gap-6">
+                        <div class="lg:block hidden">
+                         <ul class="flex justify-between space-x-14 text-white ">
+                            <li><a href="#home">Home</a></li>
+                            <li><a href="#news">News</a></li>
+                            <li><a href="#shop">Shop</a></li>
+                            <li><a href="#care">Care</a></li>
+                            <li><a href="#contact">Contact</a></li>
+                         </ul>
+                        </div>
+                         <div class="hidden lg:block">
+                             <div class="flex justify-end items-center text-white ">
+                                 <div class="flex gap-x-2">
+                                     <div><i class="ri-shopping-cart-line"></i></div>
+                                     <div><i class="ri-user-line"></i></div>
+                                     <div class="lg:hidden" >
+                                        <svg fill="none" viewbox="0 0 15 15" height="1em" width="1em" id="ham">
+                                            <path
+                                              fill="currentColor"
+                                              fillrule="evenodd"
+                                              d="M1.5 3a.5.5 0 000 1h12a.5.5 0 000-1h-12zM1 7.5a.5.5 0 01.5-.5h12a.5.5 0 010 1h-12a.5.5 0 01-.5-.5zm0 4a.5.5 0 01.5-.5h12a.5.5 0 010 1h-12a.5.5 0 01-.5-.5z"
+                                              cliprule="evenodd"
+                                            />
+                                          </svg>
+                                     </div>
+
+                                     </div>
+                              </div>
+                         </div>
+                      </nav>
+                 </div>
+                 
                 
             </div>
         </div>
-    </header> -->
+
+    </header>
 
 
-    <section class="home">
+    <section class="lg:hidden fixed right-0 top-12 w-[100vw] h-[100vh] hidden blur-content z-50" id="content">
+        <nav class="flex justify-start items-center">
+            <div class="flex items-start justify-center">
+             <ul class=" text-white h-[40vh] w-[100vw] flex flex-col gap-y-8 items-center pt-8">
+                <li><a href="#home" id="home1">Home</a></li>
+                <li><a href="#news" id="news1">News</a></li>
+                <li><a href="#shop" id="shop1">Shop</a></li>
+                <li><a href="#care" id="care1">Care</a></li>
+                <li><a href="#contact" id="contact1">Contact</a></li>
+             </ul>
+            </div>
+             
+          </nav>
+    </section>
+
+
+
+    <section class="home" id="home">
         <div class="2xl:container ">
             <div class="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2">
-                <div class="flex flex-col mt-20 md:h-[100vh] fade-in-top ">
+                <div class="flex flex-col mt-20 md:h-[100vh] fade-in-top  ">
                     <img src="./assets/home-cactus.png" alt="home-cactus" class="h-[70%] md:h-[75%] drop-shadow-[0_0_48px_rgba(131,201,74,0.25)] self-center" >
                 </div>
-                <div class="h-[80%] gap-y-10 px-10 flex flex-col justify-center items-center md:justify-start md:items-start md:mt-[8rem] text-focus-in">
-                    <div class="">
+                <div class="h-[80%] gap-y-10 px-10 flex flex-col justify-center items-center md:justify-start md:items-start md:mt-[8rem] text-focus-in ">
+                    <div class="qwerty">
                         <h1 class="text-white font-bold text-[30px] lg:text-[4.25rem] italic">ORNAMENTAL <span class="text-[#83c94a]">PLANTS</span> FOR YOUR HOME</h1>
                         <P class="text-gray-400">We design ornamental plants for your home in-house for an original style and quality yoou wont't fint anywhere else.</P>
                     </div>
@@ -104,7 +120,7 @@
     
     </section>
 
-    <section class="mt-10 lg:mt-0 ">
+    <section class="mt-10 lg:mt-0 " id="news">
         <div class="2xl:container">
             <div class="w-[80%] mx-auto grid grid-cols-1 md:grid-cols-2">
                 <div class="flex flex-col justify-center items-start">
@@ -132,7 +148,7 @@
     </section>
 
 
-    <section class="mt-20 md:mt-40 lg:10">
+    <section class="mt-20 md:mt-40 lg:10" id="shop">
         <div class="2xl:container">
             <div class="w-[80%] mx-auto flex justify-center">
                 <h2 class="text-white text-[1.5rem] font-bold italic">THE BEST PLANTS</h2>
@@ -183,7 +199,7 @@
 
     </section>
 
-    <section class="mt-20 md:mt-40 lg:10">
+    <section class="mt-20 md:mt-40 lg:10" id="care">
         <div class="2xl:container">
             <div class="w-[80%] mx-auto flex justify-center">
                 <h2 class="text-white text-[1.5rem] font-bold italic">CARE AND HEALTH FOR <br> YOUR CACTUS</h2>
@@ -233,7 +249,7 @@
     </section>
 
 
-    <section class="mt-10 md:mt-40 lg:mt-10 ">
+    <section class="mt-10 md:mt-40 lg:mt-10 " id="contact">
         <div class="2xl:container">
             <div class="w-[80%] mx-auto flex justify-center ">
                 <h2 class="text-white text-[1.5rem] font-bold italic">YOU WANT A CACTUS <br> CONTACT US</h2>
@@ -278,27 +294,31 @@
             <div class="w-[80%] mx-auto flex justify-center items-center">
                 <form id="form" class="space-y-2">
                     <div class="space-y-2">
-                        <label for="name" class="text-white">Name</label>
+                        <label for="name-form" class="text-white">Name</label>
                         <br>
-                    <input type="text" placeholder="Enter your Name" id="name" class="w-[300px] md:w-[400px] border-solid border-[2px] border-[#83c94a] bg-[#131416] h-[35px] px-1 py-1 ">
+                    <input type="text" placeholder="Enter your Name" id="name-form" class="w-[300px] md:w-[400px] border-solid border-[2px] border-[#83c94a] bg-[#131416] h-[35px] px-1 py-1 ">
+                    <p id="n_e"></p>
                     </div>
                     <div class="space-y-2">
-                        <label for="email" class="text-white">E-mail</label>
+                        <label for="email-form" class="text-white">E-mail</label>
                         <br>
-                    <input type="email" placeholder="Enter your E-mail" id="email" class="w-[300px] md:w-[400px] border-solid border-[2px] border-[#83c94a] bg-[#131416] h-[35px] px-1 py-1 ">
-                    </div>
+                    <input type="email" placeholder="Enter your E-mail" id="email-form" class="w-[300px] md:w-[400px] border-solid border-[2px] border-[#83c94a] bg-[#131416] h-[35px] px-1 py-1 ">
+                    <p id="e_e"></p>
+                     </div>
                     <div class="space-y-2">
-                        <label for="phone" class="text-white">Mobile Number</label>
+                        <label for="phone-form" class="text-white">Mobile Number</label>
                         <br>
-                        <input type="text" placeholder="Enter your Number" id="phone" class="w-[300px] md:w-[400px] border-solid border-[2px] border-[#83c94a] bg-[#131416] h-[35px] px-1 py-1 "></div>
+                        <input type="text" placeholder="Enter your Number" id="phone-form" class="w-[300px] md:w-[400px] border-solid border-[2px] border-[#83c94a] bg-[#131416] h-[35px] px-1 py-1 "></div>
+                        <p id="p_e"></p>
                     <div>
-                        <button type="submit" class="bg-[#83c94a] text-white px-5 py-2 rounded-3xl mt-3">Submit</button>
+                        <button class="bg-[#83c94a] text-white px-5 py-2 rounded-3xl mt-3">Submit</button>
                     </div>
 
                 </form>
             </div>
         </div>
     </section>
+
 
     <footer class="mt-10 md:mt-40">
         <div class="2xl:container">
@@ -349,6 +369,10 @@
         </div>
 
     </footer>
+
+    
+    <script src="./script.js"> </script>
+    <script src="./scrollreveal.min.js"></script>
     
 </body>
 </html>
